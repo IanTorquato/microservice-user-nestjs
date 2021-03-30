@@ -14,8 +14,8 @@ import { User } from './user.entity';
         name: 'AUTH_CLIENT',
         transport: Transport.TCP,
         options: {
-          host: 'localhost',
-          port: 4000,
+          host: 'auth-service',
+          port: Number(process.env.CONNECTION_AUTH_SERVICE_PORT),
         },
       },
     ]),

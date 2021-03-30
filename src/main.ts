@@ -1,25 +1,26 @@
+import { config } from 'dotenv';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
+
+config();
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const PORT = 3010;
 
   app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-      host: 'localhost',
-      port: 4010,
+      host: 'user-service',
+      port: Number(process.env.CONNECTION_USER_SERVICE_PORT),
     },
   });
 
   await app.startAllMicroservicesAsync();
 
-  await app.listen(PORT, () =>
-    Logger.log(`Application-User running on port ${PORT}`),
-  );
+  await app.listen(process.env.USER_SERVICE_PORT);
 
   Logger.log('User microservice running');
 }
