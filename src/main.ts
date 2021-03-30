@@ -15,8 +15,10 @@ async function bootstrap() {
     },
   });
 
+  await app.startAllMicroservicesAsync();
+
   await app.listen(PORT, () =>
-    console.log(`Application-User running on port ${PORT}`),
+    Logger.log(`Application-User running on port ${PORT}`),
   );
 
   Logger.log('User microservice running');
