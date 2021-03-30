@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, InsertResult, Repository } from 'typeorm';
+import { FindConditions, Repository } from 'typeorm';
 
 import { User } from './user.entity';
 
@@ -17,17 +17,17 @@ export class UserService {
     return this.userRepository.findOne(query);
   }
 
-  async createUser(user: any): Promise<InsertResult> {
+  async createUser(user: any): Promise<any> {
     try {
       // Perform all needed checks
 
       const userEntity = this.userRepository.create(user);
 
-      const response = await this.userRepository.insert(userEntity);
+      await this.userRepository.insert(userEntity);
 
       Logger.log('createUser - Created user');
 
-      return response;
+      return userEntity;
     } catch (error) {
       Logger.log(error);
       throw error;
