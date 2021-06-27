@@ -1,8 +1,7 @@
 {
-  "name": "nestjs-microservice-test-user",
+  "name": "microservice-user-nestjs",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "author": "Ian Torquato",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
